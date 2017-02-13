@@ -1,2 +1,2 @@
 # ContactListApp
-# A basic MEAN-Stack application.
+A basic MEAN-Stack application.
