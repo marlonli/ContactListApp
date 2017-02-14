@@ -18,13 +18,28 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Number</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-            	<tr ng-repeat="person in contactlist">
-            		<td>{{person.name}}</td>
-            		<td>{{person.email}}</td>
-            		<td>{{person.number}}</td>
+	            <tr>
+	            	<td>
+	            		<input type="text" class="form-control" ng-model="person.name">
+	            	</td>
+	            	<td>
+	            		<input type="text" class="form-control" ng-model="person.email">
+	            	</td>
+	            	<td>
+	            		<input type="text" class="form-control" ng-model="person.number">
+	            	</td>
+	            	<td>
+	            		<button class="btn btn-primary" ng-click="addContact()">Add Contact</button>
+	            	</td>
+	            </tr>
+            	<tr ng-repeat="x in contactlist">
+            		<td>{{x.name}}</td>
+            		<td>{{x.email}}</td>
+            		<td>{{x.number}}</td>
             	</tr>
             </tbody>
         </table>
