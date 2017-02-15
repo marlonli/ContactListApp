@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
+// var ObjectId = require('mongodb').ObjectId;
 var db = mongojs('contactlist', ['contactlist']);
 var bodyParser = require('body-parser');
 
@@ -15,15 +16,11 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + "/public"));// /public/img will be shown as /img
 app.use(bodyParser.json());
 
-
-
-
-
 app.get('/contactlist', function(req, res) {
 	console.log("I recerved a GET request")
 
 	db.contactlist.find(function(err, docs) {
-		console.log(docs);
+		// console.log(docs);
 		res.json(docs);
 	})
 });
@@ -35,6 +32,34 @@ app.post('/addcontact', function(req, res){
 		console.log("res=============");
 		console.log(doc);
 	});
+});
+
+app.delete('/contactlist/:id', function(req, res) {
+	var id = req.params.id;
+	console.log("deleted");
+	db.contactlist.remove({_id: mongojs.ObjectId(id)}, function(err, doc) {
+		res.json(doc);
+	});
+});
+
+app.get('/contactlist/:id', function(req, res) {
+	var id = req.params.id;
+	console.log(id);
+	db.contactlist.findOne({_id: mongojs.ObjectId(id)}, function(err, doc) {
+		res.json(doc);
+		console.log(doc);
+	})
+});
+
+app.put('/contactlist2', function(req, res) {
+	var id = req.body._id;
+	db.contactlist.findAndModify({
+		query: {_id: mongojs.ObjectId(id)}, 
+		update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
+		new: true}, 
+		function(err, doc) {
+			res.json(doc);
+		});
 });
 	// person1 = {
 	// 	name: "Tim",

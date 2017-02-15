@@ -19,27 +19,23 @@
                     <th>Email</th>
                     <th>Number</th>
                     <th>Action</th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
 	            <tr>
-	            	<td>
-	            		<input type="text" class="form-control" ng-model="person.name">
-	            	</td>
-	            	<td>
-	            		<input type="text" class="form-control" ng-model="person.email">
-	            	</td>
-	            	<td>
-	            		<input type="text" class="form-control" ng-model="person.number">
-	            	</td>
-	            	<td>
-	            		<button class="btn btn-primary" ng-click="addContact()">Add Contact</button>
-	            	</td>
+	            	<td><input type="text" class="form-control" ng-model="person.name"></td>
+	            	<td><input type="text" class="form-control" ng-model="person.email"></td>
+	            	<td><input type="text" class="form-control" ng-model="person.number"></td>
+	            	<td><button class="btn btn-primary" ng-click="addContact()">Add Contact</button></td>
+					<td><button class="btn btn-info" ng-click="update()">Update</button>&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button></td>
 	            </tr>
             	<tr ng-repeat="x in contactlist">
             		<td>{{x.name}}</td>
             		<td>{{x.email}}</td>
             		<td>{{x.number}}</td>
+            		<td><button class="btn btn-danger" ng-click="remove(x._id)">Remove</button></td>
+            		<td><button class="btn btn-warning" ng-click="edit(x._id)">Edit</button></td>
             	</tr>
             </tbody>
         </table>
